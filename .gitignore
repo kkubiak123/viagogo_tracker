@@ -1,0 +1,17 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Dane (auto-generowane)
+prices.db
+tracker.log
+reports/
+
+# Playwright
+playwright-report/
+
+# OS
+.DS_Store

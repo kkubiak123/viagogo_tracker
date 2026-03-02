@@ -1,0 +1,55 @@
+{
+  "settings": {
+    "interval_minutes": 60,
+    "max_retries": 3,
+    "retry_delay_seconds": 300
+  },
+  "affiliate": {
+    "viagogo_aid": "WSTAW_SWOJ_AID",
+    "stubhub_aid": "WSTAW_SWOJ_AID"
+  },
+  "events": [
+    {
+      "id": "pol-alb-2026-03-26",
+      "name": "Polska - Albania",
+      "date": "2026-03-26",
+      "time": "20:45",
+      "venue": "PGE Narodowy, Warszawa",
+      "competition": "Baraże MŚ 2026 - Półfinał",
+      "active": true,
+      "urls": {
+        "viagogo": "https://www.viagogo.com/Sports-Tickets/Soccer/National-Soccer-Team/Poland-National-Soccer-Team-Tickets/E-159916479",
+        "stubhub": "https://www.stubhub.pl/bilety-na-poland-national-football-team-vs-albania-national-football-team-pge-narodowy-26-3-2026/event/107111178/",
+        "ticombo": "https://www.ticombo.pl/pl/sports-tickets/football-tickets/poland-vs-albania-play-off-semi-final-4-play-off-matches-world-cup-2026-2603262359/7681ee2b-0204-4b9b-b68e-2407d5002d69"
+      }
+    },
+    {
+      "id": "pol-final-2026-03-31",
+      "name": "Polska - Finał Baraży",
+      "date": "2026-03-31",
+      "time": "20:45",
+      "venue": "TBD",
+      "competition": "Baraże MŚ 2026 - Finał",
+      "active": false,
+      "urls": {
+        "viagogo": "WSTAW_URL_VIAGOGO",
+        "stubhub": "WSTAW_URL_STUBHUB",
+        "ticombo": "WSTAW_URL_TICOMBO"
+      }
+    },
+    {
+      "id": "wc-final-2026",
+      "name": "FIFA World Cup 2026 - Finał",
+      "date": "2026-07-19",
+      "time": "21:00",
+      "venue": "MetLife Stadium, New Jersey, USA",
+      "competition": "FIFA World Cup 2026",
+      "active": true,
+      "urls": {
+        "viagogo": "https://www.viagogo.com/in/Sports-Tickets/Soccer/Soccer-Tournament/World-Cup-Tickets/E-153020449",
+        "stubhub": "https://www.stubhub.com/world-cup-east-rutherford-tickets-7-19-2026/event/153020449/",
+        "ticombo": "https://www.ticombo.com/en/sports-tickets/football-tickets/final-world-cup-2026"
+      }
+    }
+  ]
+}
