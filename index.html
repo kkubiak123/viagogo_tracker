@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Aktualne ceny biletów na mecze Polska i FIFA World Cup 2026. Porównaj oferty Viagogo, StubHub i Ticombo w jednym miejscu.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="TicketWay — Porównaj ceny biletów — Viagogo, StubHub, Ticombo">
+  <meta property="og:description" content="Aktualne ceny biletów na mecze Polska i FIFA World Cup 2026. Porównaj oferty Viagogo, StubHub i Ticombo w jednym miejscu.">
+  <title>TicketWay — Porównaj ceny biletów — Viagogo, StubHub, Ticombo</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎟</text></svg>">
+  <style>
+    :root {
+      --bg: #0d0d1a;
+      --surface: #16162a;
+      --surface2: #1e1e38;
+      --accent: #e74c3c;
+      --green: #2ecc71;
+      --blue: #3498db;
+      --text: #f0f0f0;
+      --muted: #888;
+      --border: #2a2a4a;
+      --radius: 12px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      min-height: 56px;
+    }
+    .nav-brand {
+      font-size: 1.25em;
+      font-weight: 800;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+      padding: 12px 0;
+    }
+    .nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9em;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .nav-link:hover { color: var(--text); border-color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0d0d1a 0%, #1a0a2e 100%);
+      padding: 56px 24px 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero h1 {
+      font-size: clamp(1.8em, 5vw, 3em);
+      font-weight: 800;
+      margin-bottom: 12px;
+      background: linear-gradient(90deg, #fff 0%, #aaa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05em;
+      max-width: 520px;
+      margin: 0 auto 24px;
+    }
+    .hero-stats {
+      display: inline-flex;
+      gap: 32px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 28px;
+    }
+    .stat { text-align: center; }
+    .stat-value { font-size: 1.5em; font-weight: 700; color: var(--text); }
+    .stat-label { font-size: .75em; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+
+    /* MAIN */
+    main { max-width: 960px; margin: 0 auto; padding: 40px 20px; }
+
+    /* EVENT SECTION */
+    .event-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 32px;
+    }
+    .event-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .event-name {
+      font-size: 1.35em;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .event-meta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: .85em;
+    }
+    .event-meta span { white-space: nowrap; }
+    .event-best-price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .ebp-label {
+      display: block;
+      font-size: .75em;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .ebp-value {
+      display: block;
+      font-size: 1.8em;
+      font-weight: 800;
+      color: var(--green);
+    }
+
+    /* PLATFORM CARDS */
+    .platform-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .p-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 16px;
+      text-align: center;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .p-card.best-card {
+      border-color: var(--green);
+      box-shadow: 0 0 20px rgba(46, 204, 113, .2);
+    }
+    .p-card.p-empty { opacity: .45; }
+    .best-badge {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: #000;
+      font-size: .7em;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 10px;
+      white-space: nowrap;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .p-logo {
+      width: 36px;
+      height: 36px;
+      background: var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1em;
+      margin: 0 auto 4px;
+    }
+    .p-name { font-size: .8em; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+    .p-price { font-size: 1.5em; font-weight: 800; color: var(--text); margin: 4px 0; }
+    .p-orig { font-size: .8em; color: var(--muted); }
+    .p-ts { font-size: .7em; color: var(--muted); margin-top: auto; }
+    .buy-btn {
+      display: block;
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: .88em;
+      font-weight: 600;
+      margin-top: 8px;
+      transition: opacity .15s, transform .1s;
+    }
+    .buy-btn:hover { opacity: .85; transform: translateY(-1px); }
+    .btn-secondary { background: var(--border); }
+    .btn-disabled { background: #333; cursor: not-allowed; pointer-events: none; color: var(--muted); }
+
+    /* CHART */
+    .chart-wrap { margin-top: 8px; }
+    .chart-title { font-size: .85em; color: var(--muted); margin-bottom: 8px; font-weight: 500; text-transform: uppercase; letter-spacing: .05em; }
+    .chart { width: 100%; border-radius: 8px; display: block; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer-rates {
+      display: inline-flex;
+      gap: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 20px;
+      font-size: .82em;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .footer-rates strong { color: var(--text); }
+    .disclaimer {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: .78em;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .disclaimer a { color: var(--muted); }
+    .updated { font-size: .75em; color: var(--muted); margin-top: 16px; }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { gap: 12px; padding: 0 16px; }
+      .hero { padding: 36px 16px 32px; }
+      .hero-stats { gap: 20px; padding: 12px 20px; flex-wrap: wrap; }
+      main { padding: 24px 16px; }
+      .event-section { padding: 20px 16px; }
+      .event-best-price { display: none; }
+      .platform-cards { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 400px) {
+      .platform-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">🎟 TicketWay</a>
+  <a href="#pol-alb-2026-03-26" class="nav-link">Polska - Albania</a><a href="#wc-final-2026" class="nav-link">FIFA World Cup 2026 - Finał</a>
+</nav>
+
+<div class="hero">
+  <h1>Porównaj ceny biletów</h1>
+  <p>Aktualne oferty z Viagogo, StubHub i Ticombo — w jednym miejscu, przeliczone na złotówki.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-value">2</div>
+      <div class="stat-label">Śledzone mecze</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">3</div>
+      <div class="stat-label">Platformy</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value">1h</div>
+      <div class="stat-label">Aktualizacja</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<section id="pol-alb-2026-03-26" class="event-section">
+  <div class="event-header">
+    <div>
+      <h2 class="event-name">Polska - Albania</h2>
+      <div class="event-meta">
+        <span>📅 26 marca 2026</span>
+        <span>🏟 PGE Narodowy, Warszawa</span>
+        <span>🏆 Baraże MŚ 2026 - Półfinał</span>
+      </div>
+    </div>
+    <div class="event-best-price"><span class="ebp-label">od</span><span class="ebp-value">298 zł</span></div>
+  </div>
+  <div class="platform-cards">
+    
+        <div class="p-card best-card">
+          <span class="best-badge">Najtaniej</span>
+          <div class="p-logo">V</div>
+          <div class="p-name">Viagogo</div>
+          <div class="p-price">298 zł</div>
+          
+          <div class="p-ts">aktualizacja 2026-03-02 19:22</div>
+          <a href="https://www.viagogo.com/Sports-Tickets/Soccer/National-Soccer-Team/Poland-National-Soccer-Team-Tickets/E-159916479" target="_blank" rel="noopener sponsored" class="buy-btn">Kup bilet →</a>
+        </div>
+        <div class="p-card">
+          
+          <div class="p-logo">S</div>
+          <div class="p-name">StubHub</div>
+          <div class="p-price">16 134 zł</div>
+          <div class="p-orig">4 500.00 USD</div>
+          <div class="p-ts">aktualizacja 2026-03-02 19:22</div>
+          <a href="https://www.stubhub.pl/bilety-na-poland-national-football-team-vs-albania-national-football-team-pge-narodowy-26-3-2026/event/107111178/" target="_blank" rel="noopener sponsored" class="buy-btn">Kup bilet →</a>
+        </div>
+        <div class="p-card">
+          
+          <div class="p-logo">T</div>
+          <div class="p-name">Ticombo</div>
+          <div class="p-price">1 085 zł</div>
+          <div class="p-orig">257.00 EUR</div>
+          <div class="p-ts">aktualizacja 2026-03-02 19:22</div>
+          <a href="https://www.ticombo.pl/pl/sports-tickets/football-tickets/poland-vs-albania-play-off-semi-final-4-play-off-matches-world-cup-2026-2603262359/7681ee2b-0204-4b9b-b68e-2407d5002d69" target="_blank" rel="noopener sponsored" class="buy-btn">Kup bilet →</a>
+        </div>
+  </div>
+  
+      <div class="chart-wrap">
+        <h3 class="chart-title">Historia cen (PLN)</h3>
+        <img src="charts/chart_pol-alb-2026-03-26.png" alt="Wykres cen — Polska - Albania" class="chart" loading="lazy">
+      </div>
+</section>
+
+<section id="wc-final-2026" class="event-section">
+  <div class="event-header">
+    <div>
+      <h2 class="event-name">FIFA World Cup 2026 - Finał</h2>
+      <div class="event-meta">
+        <span>📅 19 lipca 2026</span>
+        <span>🏟 MetLife Stadium, New Jersey, USA</span>
+        <span>🏆 FIFA World Cup 2026</span>
+      </div>
+    </div>
+    <div class="event-best-price"><span class="ebp-label">od</span><span class="ebp-value">32 369 zł</span></div>
+  </div>
+  <div class="platform-cards">
+    
+        <div class="p-card best-card">
+          <span class="best-badge">Najtaniej</span>
+          <div class="p-logo">V</div>
+          <div class="p-name">Viagogo</div>
+          <div class="p-price">32 369 zł</div>
+          
+          <div class="p-ts">aktualizacja 2026-03-02 19:22</div>
+          <a href="https://www.viagogo.com/in/Sports-Tickets/Soccer/Soccer-Tournament/World-Cup-Tickets/E-153020449" target="_blank" rel="noopener sponsored" class="buy-btn">Kup bilet →</a>
+        </div>
+        <div class="p-card">
+          
+          <div class="p-logo">S</div>
+          <div class="p-name">StubHub</div>
+          <div class="p-price">33 641 zł</div>
+          
+          <div class="p-ts">aktualizacja 2026-03-02 19:22</div>
+          <a href="https://www.stubhub.com/world-cup-east-rutherford-tickets-7-19-2026/event/153020449/" target="_blank" rel="noopener sponsored" class="buy-btn">Kup bilet →</a>
+        </div>
+        <div class="p-card">
+          
+          <div class="p-logo">T</div>
+          <div class="p-name">Ticombo</div>
+          <div class="p-price">32 582 zł</div>
+          <div class="p-orig">7 717.14 EUR</div>
+          <div class="p-ts">aktualizacja 2026-03-02 19:22</div>
+          <a href="https://www.ticombo.com/en/sports-tickets/football-tickets/final-world-cup-2026" target="_blank" rel="noopener sponsored" class="buy-btn">Kup bilet →</a>
+        </div>
+  </div>
+  
+      <div class="chart-wrap">
+        <h3 class="chart-title">Historia cen (PLN)</h3>
+        <img src="charts/chart_wc-final-2026.png" alt="Wykres cen — FIFA World Cup 2026 - Finał" class="chart" loading="lazy">
+      </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-rates">
+    <span>EUR/PLN: <strong>4.2221</strong></span>
+    <span>USD/PLN: <strong>3.5854</strong></span>
+  </div>
+  <p class="disclaimer">
+    Strona zawiera linki partnerskie (afiliacyjne). Gdy kupisz bilet przez nasz link,
+    możemy otrzymać prowizję bez żadnych dodatkowych kosztów dla Ciebie.
+    Ceny są aktualizowane automatycznie co godzinę i mogą różnić się od cen aktualnie
+    dostępnych na platformach. Zawsze sprawdź ostateczną cenę przed zakupem.
+  </p>
+  <p class="updated">Ostatnia aktualizacja danych: 02.03.2026 19:25</p>
+</footer>
+
+</body>
+</html>
